@@ -4,6 +4,7 @@ import { UserinfoService } from '../userinfo/userinfo.service'
 import { AuthService } from '../auth/auth.service';
 import { DbService } from '../db-service/db-service.service';
 import { ApiService } from '../api/api.service';
+import { SurveyorapiService } from '../surveyorapi/surveyorapi.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class GlobalerrorhandlerService implements ErrorHandler {
     private app: AppService,
     private auth: AuthService,
     private db: DbService,
-    private api: ApiService
+    private surveyorService: SurveyorapiService
   ) { }
 
   /**
@@ -34,9 +35,9 @@ export class GlobalerrorhandlerService implements ErrorHandler {
     };
 
     const errorDetails = {
-      Surveyor_Id: this.user.id,
-      Description: `Device ID: ${this.user.deviceUUID}
-                    UserName: ${this.user.name}
+      Surveyor_Id: this.user.details.user.id,
+      Description: `Device ID: ${this.user.details.device.deviceUUID}
+                    UserName: ${this.user.details.user.name}
                     Device Manufacture: ${(window as any).device?.manufacturer}
                     Device Model: ${(window as any).device?.model}
                     Device Platform: ${(window as any).device?.platform}
@@ -108,8 +109,7 @@ export class GlobalerrorhandlerService implements ErrorHandler {
           /**
           * Change the function accordingly
           */
-          // const res: any = await this.surveyorService.postError(error, this.auth.serviceAuth1);
-          const res: any = true;
+          const res: any = await this.surveyorService.postError(error);
           if (!res.IsSuccess) {
             throw new Error("Failed to post error log");
           } else {
@@ -120,8 +120,7 @@ export class GlobalerrorhandlerService implements ErrorHandler {
           /**
            * Change the function accordingly
            */
-          // const res: any = await this.surveyorService.postError(errorDetails, this.auth.serviceAuth1);
-          const res: any = true;
+          const res: any = await this.surveyorService.postError(err);
           if (!res.IsSuccess) {
             throw new Error("Failed to post error log");
           }

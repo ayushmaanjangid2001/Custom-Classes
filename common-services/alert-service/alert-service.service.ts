@@ -7,7 +7,6 @@ import { AlertController } from '@ionic/angular';
 export class AlertService {
 
   constructor(private alertController: AlertController) { }
-
   private alert: HTMLIonAlertElement | null = null;
 
   async showConfirmAlert(header: string, message: string, okText = 'OK', cancelText = 'Cancel'): Promise<boolean> {

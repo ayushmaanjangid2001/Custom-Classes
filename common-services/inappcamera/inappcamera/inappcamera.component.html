@@ -1,0 +1,37 @@
+<ion-content id="content" [ngClass]="orientation">
+  <app-assessment-header title="Camera" class="header"></app-assessment-header>
+
+  <div *ngIf="cameraActive && !previewActive" [ngClass]="['button-container', orientation]">
+    <ion-button (click)="goBack()" color="secondary">
+      <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+    </ion-button>
+    <ion-button (click)="toggleFlash()" color="secondary">
+      <ion-icon slot="icon-only" [name]="flashOn ? 'flash' : 'flash-off'"></ion-icon>
+    </ion-button>
+    <ion-button (click)="takePicture()" color="secondary">
+      <ion-icon slot="icon-only" name="camera"></ion-icon>
+    </ion-button>
+    <ion-button (click)="flipCamera()" color="secondary">
+      <ion-icon slot="icon-only" name="repeat"></ion-icon>
+    </ion-button>
+    <ion-button (click)="zoomOut()" color="secondary">
+      <ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button (click)="zoomIn()" color="secondary">
+      <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+    </ion-button>
+  </div>
+
+  <div *ngIf="previewActive" class="preview-container">
+    <img [src]="image" class="preview-image" />
+    <div class="button-container portrait">
+      <ion-button (click)="denyPicture()" color="secondary">
+        <ion-icon slot="icon-only" name="close-circle-outline"></ion-icon>
+      </ion-button>
+      <ion-button (click)="acceptPicture()" color="secondary">
+        <ion-icon slot="icon-only" name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
+  

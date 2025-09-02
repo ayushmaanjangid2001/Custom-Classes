@@ -10,22 +10,19 @@ import { Injectable } from '@angular/core';
 export class UserinfoService {
 
   constructor() { }
-
-  name = 'Guest'
-
-  id = 0
-  
-  isLoggedIn = false
-  
-  deviceIMEINo = ''
-
-  deviceUUID = ''
-  
-  position: any = null
-  
-  siebelUserId = ''
-  
-  GalleryOption = ''
-  
-  password = ''
+  public details = {
+    user: {
+      name: 'Guest',
+      id: 0,
+      isLoggedIn: false,
+      position: null,
+      siebelUserId: '',
+      GalleryOption: '',
+      password: ''
+    },
+    device: {
+      deviceIMEINo: '',
+      deviceUUID: '',
+    }
+  };
 }
